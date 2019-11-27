@@ -5,5 +5,23 @@
   tasks:
   - name: 1. Unarchive Graalvm-ce to /opt
     unarchive:
-    src: https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-19.3.0/graalvm-ce-java11-linux-amd64-19.3.0.tar.gz
-    dest: /opt
+      src: https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-19.3.0/graalvm-ce-java11-linux-amd64-19.3.0.tar.gz
+      dest: /opt
+      remote_src: yes
+      list_files: yes
+    register: unarchived_list
+
+# unarchived_list.files[0].split('/')[0]列出目錄名稱
+  - name: 2. Print Graalvm dir_name
+    debug: msg="{{unarchived_list.files[0].split('/')[0]}}"
+
+  - name: 3. Rename Graalvm dir_name
+    command: mv /opt/{{ unarchived_list.files[0].split('/')[0] }} /opt/graalvm
+
+  - name: 4. Add JAVA_HOME from templates
+    template:
+      src: "./templates/java.sh.j2"
+      dest: "/etc/profile.d/java.sh"
+
+  - name: 5. Load JAVA_HOME path
+    shell: source /etc/profile
