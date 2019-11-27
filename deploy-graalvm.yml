@@ -1,0 +1,9 @@
+- hosts: webapp
+  become: true
+  remote_user: root
+
+  tasks:
+  - name: 1. Unarchive Graalvm-ce to /opt
+    unarchive:
+    src: https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-19.3.0/graalvm-ce-java11-linux-amd64-19.3.0.tar.gz
+    dest: /opt
