@@ -10,7 +10,7 @@ $ ansible-playbook -i hosts deploy-graalvm.yml
 
 請自行將remote server的 IP 填入 ansible-graalvm/hosts
 
-請將GraalVM的URL填入ensile-graalvm/vars/graalvm_var.yml中的download_path_url
+請將GraalVM的URL填入ansile-graalvm/vars/graalvm_var.yml中的download_path_url
 
 ## Result:
 
