@@ -1,11 +1,13 @@
 - hosts: webapp
   become: true
   remote_user: root
+  vars_files:
+    - ./vars/graalvm_var.yml
 
   tasks:
   - name: 1. Unarchive Graalvm-ce to /opt
     unarchive:
-      src: https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-19.3.0/graalvm-ce-java11-linux-amd64-19.3.0.tar.gz
+      src: "{{ download_path_url }}"
       dest: /opt
       remote_src: yes
       list_files: yes

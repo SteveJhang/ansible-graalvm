@@ -1,12 +1,16 @@
 # ansible-graalvm
 
+將GraalVM 安裝到/opt目錄下，並設定好環境變數
+
 ## Useage:
 
 ```bash
 $ ansible-playbook -i hosts deploy-graalvm.yml
 ```
 
-請自行將remote server的 IP 填入 sensible-graalvm/hosts
+請自行將remote server的 IP 填入 ansible-graalvm/hosts
+
+請將GraalVM的URL填入ensile-graalvm/vars/graalvm_var.yml中的download_path_url
 
 ## Result:
 
